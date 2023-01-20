@@ -1,0 +1,499 @@
+{
+  "project": {
+    "pid": "__VIA_PROJECT_ID__",
+    "rev": "__VIA_PROJECT_REV_ID__",
+    "rev_timestamp": "__VIA_PROJECT_REV_TIMESTAMP__",
+    "pname": "Quality_Assessment_Calopus",
+    "creator": "VGG Image Annotator (http://www.robots.ox.ac.uk/~vgg/software/via)",
+    "created": 1660556362703,
+    "vid_list": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33"
+    ]
+  },
+  "config": {
+    "file": {
+      "loc_prefix": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": ""
+      }
+    },
+    "ui": {
+      "file_content_align": "center",
+      "file_metadata_editor_visible": true,
+      "spatial_metadata_editor_visible": true,
+      "temporal_segment_metadata_editor_visible": true,
+      "spatial_region_label_attribute_id": "",
+      "gtimeline_visible_row_count": "4"
+    }
+  },
+  "attribute": {
+    "1": {
+      "aname": "Is the anatomy on the left or right easier to identify? (or same)",
+      "anchor_id": "FILE1_Z0_XY0",
+      "type": 4,
+      "desc": "",
+      "options": {
+        "0": "left",
+        "1": "right",
+        "2": "same"
+      },
+      "default_option_id": "0"
+    }
+  },
+  "file": {
+    "0": {
+      "fid": "0",
+      "fname": "0",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P163Fr352-367_good_spine_P115Fr352-367_bad_spine.mp4"
+    },
+    "1": {
+      "fid": "1",
+      "fname": "1",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P166Fr417-432_bad_spine_P166Fr441-456_good_spine.mp4"
+    },
+    "2": {
+      "fid": "2",
+      "fname": "2",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P166Fr327-342_bad_spine_P166Fr441-456_good_spine.mp4"
+    },
+    "3": {
+      "fid": "3",
+      "fname": "3",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P166Fr632-647_good_pelvis_P166Fr440-455_bad_pelvis.mp4"
+    },
+    "4": {
+      "fid": "4",
+      "fname": "4",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P144Fr202-217_good_head_P115Fr215-230_bad_head.mp4"
+    },
+    "5": {
+      "fid": "5",
+      "fname": "5",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P163Fr148-163_good_head_P163Fr92-107_bad_head.mp4"
+    },
+    "6": {
+      "fid": "6",
+      "fname": "6",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P163Fr754-769_bad_spine_P163Fr352-367_good_spine.mp4"
+    },
+    "7": {
+      "fid": "7",
+      "fname": "7",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P18Fr17-32_bad_head_P18Fr180-195_good_head.mp4"
+    },
+    "8": {
+      "fid": "8",
+      "fname": "8",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P163Fr754-769_bad_spine_P163Fr722-737_good_spine.mp4"
+    },
+    "9": {
+      "fid": "9",
+      "fname": "9",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P166Fr407-422_good_abdomen_P166Fr372-387_bad_abdomen.mp4"
+    },
+    "10": {
+      "fid": "10",
+      "fname": "10",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P115Fr297-312_good_head_P115Fr215-230_bad_head.mp4"
+    },
+    "11": {
+      "fid": "11",
+      "fname": "11",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P166Fr92-107_mid_head_P166Fr172-187_good_head.mp4"
+    },
+    "12": {
+      "fid": "12",
+      "fname": "12",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P18Fr140-155_mid_head_P18Fr180-195_good_head.mp4"
+    },
+    "13": {
+      "fid": "13",
+      "fname": "13",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P144Fr102-117_bad_head_P144Fr202-217_good_head.mp4"
+    },
+    "14": {
+      "fid": "14",
+      "fname": "14",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P166Fr424-439_bad_femur_P166Fr354-369_good_femur.mp4"
+    },
+    "15": {
+      "fid": "15",
+      "fname": "15",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P166Fr172-187_good_head_P166Fr35-50_bad_head.mp4"
+    },
+    "16": {
+      "fid": "16",
+      "fname": "16",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P18Fr180-195_good_head_P144Fr202-217_good_head.mp4"
+    },
+    "17": {
+      "fid": "17",
+      "fname": "17",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P115Fr448-463_good_spine_P163Fr722-737_good_spine.mp4"
+    },
+    "18": {
+      "fid": "18",
+      "fname": "18",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P18Fr180-195_good_head_P115Fr297-312_good_head.mp4"
+    },
+    "19": {
+      "fid": "19",
+      "fname": "19",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P163Fr248-263_bad_head_P163Fr148-163_good_head.mp4"
+    },
+    "20": {
+      "fid": "20",
+      "fname": "20",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P18Fr140-155_mid_head_P18Fr17-32_bad_head.mp4"
+    },
+    "21": {
+      "fid": "21",
+      "fname": "21",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P144Fr359-373_good_spine_P144Fr280-295_bad_spine.mp4"
+    },
+    "22": {
+      "fid": "22",
+      "fname": "22",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P166Fr35-50_bad_head_P166Fr92-107_mid_head.mp4"
+    },
+    "23": {
+      "fid": "23",
+      "fname": "23",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P166Fr378-393_good_pelvis_P166Fr440-455_bad_pelvis.mp4"
+    },
+    "24": {
+      "fid": "24",
+      "fname": "24",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P115Fr352-367_bad_spine_P115Fr448-463_good_spine.mp4"
+    },
+    "25": {
+      "fid": "25",
+      "fname": "25",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P115Fr215-230_bad_head_P115Fr297-312_good_head.mp4"
+    },
+    "26": {
+      "fid": "26",
+      "fname": "26",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P166Fr440-455_bad_pelvis_P166Fr632-647_good_pelvis.mp4"
+    },
+    "27": {
+      "fid": "27",
+      "fname": "27",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P18Fr180-195_good_head_P18Fr140-155_mid_head.mp4"
+    },
+    "28": {
+      "fid": "28",
+      "fname": "28",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P166Fr441-456_good_spine_P166Fr327-342_bad_spine.mp4"
+    },
+    "29": {
+      "fid": "29",
+      "fname": "29",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P144Fr280-295_bad_spine_P144Fr359-373_good_spine.mp4"
+    },
+    "30": {
+      "fid": "30",
+      "fname": "30",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P166Fr441-456_good_spine_P166Fr417-432_bad_spine.mp4"
+    },
+    "31": {
+      "fid": "31",
+      "fname": "31",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P163Fr352-367_good_spine_P163Fr754-769_bad_spine.mp4"
+    },
+    "32": {
+      "fid": "32",
+      "fname": "32",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P166Fr440-455_bad_pelvis_P166Fr378-393_good_pelvis.mp4"
+    },
+    "33": {
+      "fid": "33",
+      "fname": "33",
+      "type": 4,
+      "loc": 3,
+      "src": "./vids/P115Fr352-367_bad_spine_P163Fr352-367_good_spine.mp4"
+    }
+  },
+  "metadata": {
+    "1_yXv8i7iK": {
+      "vid": "1",
+      "flg": 0,
+      "z": [],
+      "xy": [],
+      "av": {}
+    }
+  },
+  "view": {
+    "0": {
+      "fid_list": [
+        "0"
+      ]
+    },
+    "1": {
+      "fid_list": [
+        "1"
+      ]
+    },
+    "2": {
+      "fid_list": [
+        "2"
+      ]
+    },
+    "3": {
+      "fid_list": [
+        "3"
+      ]
+    },
+    "4": {
+      "fid_list": [
+        "4"
+      ]
+    },
+    "5": {
+      "fid_list": [
+        "5"
+      ]
+    },
+    "6": {
+      "fid_list": [
+        "6"
+      ]
+    },
+    "7": {
+      "fid_list": [
+        "7"
+      ]
+    },
+    "8": {
+      "fid_list": [
+        "8"
+      ]
+    },
+    "9": {
+      "fid_list": [
+        "9"
+      ]
+    },
+    "10": {
+      "fid_list": [
+        "10"
+      ]
+    },
+    "11": {
+      "fid_list": [
+        "11"
+      ]
+    },
+    "12": {
+      "fid_list": [
+        "12"
+      ]
+    },
+    "13": {
+      "fid_list": [
+        "13"
+      ]
+    },
+    "14": {
+      "fid_list": [
+        "14"
+      ]
+    },
+    "15": {
+      "fid_list": [
+        "15"
+      ]
+    },
+    "16": {
+      "fid_list": [
+        "16"
+      ]
+    },
+    "17": {
+      "fid_list": [
+        "17"
+      ]
+    },
+    "18": {
+      "fid_list": [
+        "18"
+      ]
+    },
+    "19": {
+      "fid_list": [
+        "19"
+      ]
+    },
+    "20": {
+      "fid_list": [
+        "20"
+      ]
+    },
+    "21": {
+      "fid_list": [
+        "21"
+      ]
+    },
+    "22": {
+      "fid_list": [
+        "22"
+      ]
+    },
+    "23": {
+      "fid_list": [
+        "23"
+      ]
+    },
+    "24": {
+      "fid_list": [
+        "24"
+      ]
+    },
+    "25": {
+      "fid_list": [
+        "25"
+      ]
+    },
+    "26": {
+      "fid_list": [
+        "26"
+      ]
+    },
+    "27": {
+      "fid_list": [
+        "27"
+      ]
+    },
+    "28": {
+      "fid_list": [
+        "28"
+      ]
+    },
+    "29": {
+      "fid_list": [
+        "29"
+      ]
+    },
+    "30": {
+      "fid_list": [
+        "30"
+      ]
+    },
+    "31": {
+      "fid_list": [
+        "31"
+      ]
+    },
+    "32": {
+      "fid_list": [
+        "32"
+      ]
+    },
+    "33": {
+      "fid_list": [
+        "33"
+      ]
+    }
+  }
+}
