@@ -1,0 +1,5 @@
+human_test/test_images/
+human_test/test_dest/
+human_test/main.py
+*.DS_Store
+*__pycache__*
