@@ -3,7 +3,7 @@
       "pid": "__VIA_PROJECT_ID__",
       "rev": "__VIA_PROJECT_REV_ID__",
       "rev_timestamp": "__VIA_PROJECT_REV_TIMESTAMP__",
-      "pname": "TEE_Generation: Human Test",
+      "pname": "TEE_Generation: Human Test, Single",
       "pdesc": "Select which image you believe to be fake",
       "creator": "VGG Image Annotator (http://www.robots.ox.ac.uk/~vgg/software/via)",
       "created": 1579195403483,
@@ -12,14 +12,16 @@
         "1",
         "2",
         "3",
-        "4"
+        "4",
+        "5",
+        "6"
       ]
     },
     "config": {
       "file": {
         "loc_prefix": {
-          "1": "",
-          "2": "C:/Users/spet4299/Documents/DPhil/Research/TEE_Generation/human_test/via_annotator/imgs/",
+          "1": "./dataset/",
+          "2": "",
           "3": "",
           "4": ""
         }
@@ -74,15 +76,14 @@
       }
     },
     "view": {
-      "1": {"fid_list": [1, 2]},
-      "2": {"fid_list": [3,4]},
-      "3": {"fid_list": [1,4]},
-      "4": {"fid_list": [2,3]},
-      "5": {"fid_list": [1]},
-      "6": {"fid_list": [2]},
-      "7": {"fid_list": [3]},
-      "8": {"fid_list": [4]
-      }
+      "1": {"fid_list": [1]},
+      "2": {"fid_list": [2]},
+      "3": {"fid_list": [3]},
+      "4": {"fid_list": [4]},
+      "5": {"fid_list": [5]},
+      "6": {"fid_list": [6]},
+      "7": {"fid_list": [7]},
+      "8": {"fid_list": [8]}
     },
     "metadata": {}
-  }
+}
