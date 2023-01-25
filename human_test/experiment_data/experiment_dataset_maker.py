@@ -87,15 +87,17 @@ class ExperimentDatasetMaker():
         self._get_rf_image_paths()
         self._make_initial_dataset_dict()
 
-        mkdir(dest_dir / self.set_name)
-        mkdir(dest_dir / self.set_name / "metadata")
+        dataset_dir = dest_dir / self.set_name / "dataset"
+        metadata_dir = dest_dir / self.set_name / "metadata"
+        dataset_dir.mkdir(parents=True)
+        metadata_dir.mkdir(parents=True)
 
         items = list(self.dataset_dict.items())
         shuffle(items)
         for i, (k, v) in enumerate(items):
             a = 5
-            new_img_name = f"img_{i}.jpg"
-            new_path = dest_dir / self.set_name / new_img_name
+            new_img_name = f"img_{i}.{ext}"
+            new_path = dataset_dir / new_img_name
 
             __class__._copy_and_rename(
                 old_path=v["src_path"], new_path=new_path)
@@ -108,8 +110,7 @@ class ExperimentDatasetMaker():
             "set_id": self.set_name,
             "n_images": i + 1
         }
-        self._dict_to_json(save_path=dest_dir/self.set_name /
-                           "metadata"/f"{self.set_name}.json")
+        self._dict_to_json(save_path= metadata_dir/f"{self.set_name}.json")
 
     def create_paired_experiment_set(self, dest_dir: Path, ext="jpg"):
         '''
