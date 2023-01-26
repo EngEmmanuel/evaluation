@@ -34,7 +34,7 @@
       "1": {
         "aname": "real_fake",
         "anchor_id": "FILEN_Z0_XY0",
-        "type": 3,
+        "type": 2,
         "desc": "Which of these images do you think is synthetic?",
         "options": {
           "1": "Image 1",

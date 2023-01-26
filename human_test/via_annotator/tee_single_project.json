@@ -1,89 +1,146 @@
 {
-    "project": {
-      "pid": "__VIA_PROJECT_ID__",
-      "rev": "__VIA_PROJECT_REV_ID__",
-      "rev_timestamp": "__VIA_PROJECT_REV_TIMESTAMP__",
-      "pname": "TEE_Generation: Human Test, Single",
-      "pdesc": "Select which image you believe to be fake",
-      "creator": "VGG Image Annotator (http://www.robots.ox.ac.uk/~vgg/software/via)",
-      "created": 1579195403483,
-      "data_format_version": "3.1.2",
-      "vid_list": [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6"
-      ]
-    },
-    "config": {
-      "file": {
-        "loc_prefix": {
-          "1": "./dataset/",
-          "2": "",
-          "3": "",
-          "4": ""
-        }
-      },
-      "ui": {
-        "file_content_align": "left",
-        "file_metadata_editor_visible": true,
-        "spatial_metadata_editor_visible": true
-      }
-    },
-    "attribute": {
-      "1": {
-        "aname": "real_fake",
-        "anchor_id": "FILEN_Z0_XY0",
-        "type": 3,
-        "desc": "Which of these images do you think is synthetic?",
-        "options": {
-          "1": "Image 1",
-          "2": "Image 2"
-        },
-        "default_option_id": ""
-      }
-    },
+  "project": {
+    "pid": "__VIA_PROJECT_ID__",
+    "rev": "__VIA_PROJECT_REV_ID__",
+    "rev_timestamp": "__VIA_PROJECT_REV_TIMESTAMP__",
+    "pname": "TEE_Generation: Human Test, Single",
+    "pdesc": "Select which image you believe to be fake",
+    "creator": "VGG Image Annotator (http://www.robots.ox.ac.uk/~vgg/software/via)",
+    "created": 1579195403483,
+    "data_format_version": "3.1.2",
+    "vid_list": [
+      "1",
+      "2",
+      "3"
+    ]
+  },
+  "config": {
     "file": {
-      "1": {
-        "fid": 1,
-        "fname": "Image 1",
-        "type": 2,
-        "loc": 2,
-        "src": "me4ch_101.png"
-      },
-      "2": {
-        "fid": 2,
-        "fname": "Image 2",
-        "type": 2,
-        "loc": 2,
-        "src": "me4ch_102.png"
-      },
-      "3": {
-        "fid": 3,
-        "fname": "Image 3",
-        "type": 2,
-        "loc": 2,
-        "src": "me4ch_109.png"
-      },
-      "4": {
-        "fid": 4,
-        "fname": "Image 4",
-        "type": 2,
-        "loc": 2,
-        "src": "me4ch_110.png"
+      "loc_prefix": {
+        "1": "",
+        "2": "",
+        "3": "./dataset/",
+        "4": ""
       }
     },
-    "view": {
-      "1": {"fid_list": [1]},
-      "2": {"fid_list": [2]},
-      "3": {"fid_list": [3]},
-      "4": {"fid_list": [4]},
-      "5": {"fid_list": [5]},
-      "6": {"fid_list": [6]},
-      "7": {"fid_list": [7]},
-      "8": {"fid_list": [8]}
+    "ui": {
+      "file_content_align": "right",
+      "file_metadata_editor_visible": true,
+      "spatial_metadata_editor_visible": false
+    }
+  },
+  "attribute": {
+    "1": {
+      "aname": "Is this image real or synthetic?",
+      "anchor_id": "FILE1_Z0_XY0",
+      "type": 3,
+      "desc": "Is this image real or synthetic?",
+      "options": {
+        "1": "Real",
+        "2": "Synthetic"
+      },
+      "default_option_id": ""
+    }
+  },
+  "file": {
+    "1": {
+      "fid": 1,
+      "fname": "Image 1",
+      "type": 2,
+      "loc": 3,
+      "src": "img_1.png"
     },
-    "metadata": {}
+    "2": {
+      "fid": 2,
+      "fname": "Image 2",
+      "type": 2,
+      "loc": 3,
+      "src": "img_2.png"
+    },
+    "3": {
+      "fid": 3,
+      "fname": "Image 3",
+      "type": 2,
+      "loc": 3,
+      "src": "img_3.png"
+    },
+    "4": {
+      "fid": 4,
+      "fname": "Image 4",
+      "type": 2,
+      "loc": 3,
+      "src": "img_4.png"
+    },
+    "5": {
+      "fid": 5,
+      "fname": "Image 5",
+      "type": 2,
+      "loc": 3,
+      "src": "img_5.png"
+    },
+    "6": {
+      "fid": 6,
+      "fname": "Image 6",
+      "type": 2,
+      "loc": 3,
+      "src": "img_6.png"
+    },
+    "7": {
+      "fid": 7,
+      "fname": "Image 7",
+      "type": 2,
+      "loc": 3,
+      "src": "img_7.png"
+    },
+    "8": {
+      "fid": 8,
+      "fname": "Image 8",
+      "type": 2,
+      "loc": 3,
+      "src": "img_8.png"
+    },
+    "9": {
+      "fid": 9,
+      "fname": "Image 9",
+      "type": 2,
+      "loc": 3,
+      "src": "img_9.png"
+    },
+    "10": {
+      "fid": 10,
+      "fname": "Image 10",
+      "type": 2,
+      "loc": 3,
+      "src": "img_10.png"
+    },
+    "11": {
+      "fid": 11,
+      "fname": "Image 11",
+      "type": 2,
+      "loc": 3,
+      "src": "img_11.png"
+    },
+    "12": {
+      "fid": 12,
+      "fname": "Image 12",
+      "type": 2,
+      "loc": 3,
+      "src": "img_12.png"
+    }
+  },
+  "view": {
+    "1": { "fid_list": [1] },
+    "2": { "fid_list": [2] },
+    "3": { "fid_list": [3] },
+    "4": { "fid_list": [4] },
+    "5": { "fid_list": [5] },
+    "6": { "fid_list": [6] },
+    "7": { "fid_list": [7] },
+    "8": { "fid_list": [8] },
+    "9": { "fid_list": [9] },
+    "10": { "fid_list": [10] },
+    "11": { "fid_list": [11] },
+    "12": { "fid_list": [12] }
+  },
+  "metadata": {}
 }
