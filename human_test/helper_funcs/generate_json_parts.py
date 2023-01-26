@@ -1,5 +1,4 @@
 import json
-import os
 from pathlib import Path
 from collections import OrderedDict
 
@@ -13,7 +12,10 @@ from collections import OrderedDict
  # @param {string} src URI of the file or base64 data
 
 
-def gen_file_part(save_path, n_images=60, root_name="img", ttype=2, loc=1,fname_root="Image", ext="png"):
+def gen_file_part(save_path, n_images=60, root_name="img", ttype=2, loc=3,fname_root="Image", ext="png"):
+    '''
+    Generates the file section of the .json
+    '''
     part = OrderedDict()
     
     for i in range(1, n_images+1):
@@ -26,14 +28,37 @@ def gen_file_part(save_path, n_images=60, root_name="img", ttype=2, loc=1,fname_
         }
 
     with open(save_path, 'w') as fp:
-        json.dump(part, fp) #indent arg may be useful
+        json.dump(part, fp) 
         
 
-def gen_view_part():
-    pass
+def gen_view_part(save_path, n_images=60,root_key="fid_list"):
+    '''
+    Generates the view section of the .json
+    '''
+    part = OrderedDict()
+
+    for i in range(1, n_images+1):
+        part[i] = {root_key: [i]}
+
+    with open(save_path, 'w') as fp:
+        json.dump(part, fp) 
+    
+
+def gen_vid_list_part(save_path, n_images = 60):
+    '''
+    Generates the vid_list section of the .json
+    '''
+    part = {
+        "vid_list": [i for i in range(1,n_images + 1)]
+    }
+
+    with open(save_path, 'w') as fp:
+        json.dump(part, fp) 
+    
 
 if __name__ == "__main__":
     base_path = Path(r"C:\Users\spet4299\Documents\DPhil\Research\TEE_Generation\evaluation\human_test\helper_funcs\json_parts")
-    fname = "file1"
-    print("cwd:", os.getcwd())
-    gen_file_part(base_path/f"{fname}.json")
+    fname = "test"
+    n_images = 12
+    gen_file_part(base_path/f"{fname}_file.json", n_images=n_images)
+    gen_view_part(base_path/f"{fname}_view.json", n_images=n_images)
