@@ -1,5 +1,9 @@
-human_test/test_images/
-human_test/test_dest/
+human_test/tests/*
+
+human_test/helper_funcs/json_parts/*
 human_test/main.py
+human_test/via_annotator/imgs/
+human_test/via_annotator/vids/
 *.DS_Store
+.vscode
 *__pycache__*
