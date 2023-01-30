@@ -20,6 +20,8 @@ class ExperimentDatasetMaker():
         self.real_data_path, self.fake_data_paths = real_data_path, fake_data_paths
         self.r_image_paths, self.f_image_paths = [], []
 
+        self.whole_dataset_dict = None
+
         self.IMAGE_EXT = ["png", "jpg", "jpeg"]
 
     @staticmethod
@@ -29,39 +31,6 @@ class ExperimentDatasetMaker():
         '''
         img_fpaths = [x for ext in exts for x in path.glob(f"*.{ext}")]
         return sample(img_fpaths, n)
-
-    def _make_initial_dataset_dict(self):
-        '''
-        Creates the skeleton dictionary that will be used to store the orginal filenames
-        and there new ids once anonymised alongside other information
-        '''
-        assert len(self.r_image_paths) == len(self.f_image_paths)
-        self.dataset_dict = OrderedDict()
-
-        for (r_p, f_p) in zip(self.r_image_paths, self.f_image_paths):
-            r_key = '/'.join(r_p.parts[-2:])
-            f_key = '/'.join(f_p.parts[-2:])
-
-            self.dataset_dict[r_key] = {
-                'state': 'r',
-                'src_path': str(r_p),
-            }
-            self.dataset_dict[f_key] = {
-                'state': 'f',
-                'src_path': str(f_p),
-            }
-
-        return
-
-    def _dict_to_json(self, save_path):
-        '''
-        Save dictionary as JSON file
-        '''
-        with open(save_path, "w") as outfile:
-            json.dump(self.dataset_dict, outfile)
-
-    def _copy_and_rename(old_path, new_path):
-        copy2(old_path, new_path)
 
     def _get_rf_image_paths(self):
         '''
@@ -83,34 +52,89 @@ class ExperimentDatasetMaker():
         # self.r_image_paths = [Path(f"r_img_{i}") for i in range(20)]
         # self.f_image_paths = [Path(f"f_img_{i}") for i in range(20)]
 
+    @staticmethod
+    def _dict_to_json(ddict, save_path):
+        '''
+        Save dictionary as JSON file
+        '''
+        with open(save_path, "w") as outfile:
+            json.dump(ddict, outfile)
+
+    def _copy_and_rename(old_path, new_path):
+        copy2(old_path, new_path)
+
+
+    def _make_initial_dataset_dict(self):
+        '''
+        Creates the skeleton dictionary that will be used to store the orginal filenames
+        and there new ids once anonymised alongside other information
+        '''
+        assert len(self.r_image_paths) == len(self.f_image_paths)
+        self.whole_dataset_dict = OrderedDict()
+
+        for (r_p, f_p) in zip(self.r_image_paths, self.f_image_paths):
+            r_key = '/'.join(r_p.parts[-2:])
+            f_key = '/'.join(f_p.parts[-2:])
+
+            self.whole_dataset_dict[r_key] = {
+                'state': 'Real',
+                'src_path': str(r_p),
+            }
+            self.whole_dataset_dict[f_key] = {
+                'state': 'Synthetic',
+                'src_path': str(f_p),
+            }
+
+        return
+
+
     def create_single_experiment_set(self, dest_dir: Path, ext="png"):
         self._get_rf_image_paths()
-        self._make_initial_dataset_dict()
 
         dataset_dir = dest_dir / self.set_name / "dataset"
         metadata_dir = dest_dir / self.set_name / "metadata"
         dataset_dir.mkdir(parents=True)
         metadata_dir.mkdir(parents=True)
 
-        items = list(self.dataset_dict.items())
-        shuffle(items)
-        for i, (k, v) in enumerate(items):
-            a = 5
-            new_img_name = f"img_{i}.{ext}"
+        output_dict = {}
+        unique_src_dirs = []
+
+        image_paths = self.r_image_paths + self.f_image_paths
+        shuffle(image_paths)
+
+        for i, p in enumerate(image_paths):
+            new_img_name = f"img_{i+1}.{ext}"
             new_path = dataset_dir / new_img_name
+            state = "Real" if p.parts[-2].lower() == "real" else "Synthetic"
 
             __class__._copy_and_rename(
-                old_path=v["src_path"], new_path=new_path)
+                old_path=p, new_path=new_path)
 
-            self.dataset_dict[k]["set_path"] = str(new_path)
-            self.dataset_dict[k]["new_name"] = new_img_name
+            src_dir = p.parts[-2]
+            
+            if src_dir not in unique_src_dirs:
+                unique_src_dirs.append(src_dir)
+
+            output_dict[new_img_name] = {
+                "state": state,
+                "init_name": p.name,
+                "src_dir": src_dir,
+                "src_path": str(p),
+                "set_path": str(new_path)
+            }
 
         # Add metadata key to the info file
-        self.dataset_dict["metadata"] = {
+        output_dict["metadata"] = {
             "set_id": self.set_name,
-            "n_images": i + 1
+            "n_images": i + 1,
+            "src_dirs": unique_src_dirs
         }
-        self._dict_to_json(save_path= metadata_dir/f"{self.set_name}.json")
+
+        __class__._dict_to_json(ddict=output_dict, save_path= metadata_dir/f"{self.set_name}.json")
+
+
+
+
 
     def create_paired_experiment_set(self, dest_dir: Path, ext="jpg"):
         '''
@@ -129,7 +153,7 @@ class ExperimentDatasetMaker():
 
         mkdir(dest_dir / self.set_name)
 
-        for i, (k_r, v_r), (k_f, v_f) in enumerate(self._pairwise(self.dataset_dict.items())):
+        for i, (k_r, v_r), (k_f, v_f) in enumerate(self._pairwise(self.whole_dataset_dict.items())):
             '''
             Development paused. One image at a time is currently in favour.
             #TODO make it such that it skips every other step so that you are effectively
