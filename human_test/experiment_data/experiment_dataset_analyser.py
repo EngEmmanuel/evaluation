@@ -4,13 +4,19 @@ from pathlib import Path
 
 
 class ExperimentDatasetAnalyser():
-    def __init__(self, results_dir: Path, answer_file: Path) -> None:
+    '''
+    Analyses the results from the real and fake quiz
+
+    :answer_file: is the file that contains the mapping of the anonymised images to their real
+    names, states and paths
+    '''
+    def __init__(self, results_dir: Path, answer_file: Path, imgs_per_dir) -> None:
         self.results_dir = results_dir
         self.answer_file = answer_file
         self.paths = None
         self.answers = None
         self.dir_responses = None
-        self.images_per_dir = None
+        self.imgs_per_dir = imgs_per_dir
 
         self._get_results_files()
 
@@ -30,9 +36,17 @@ class ExperimentDatasetAnalyser():
 
     def _get_responses(self):
         '''
-        For all response JSON files, this function reads the JSON and stores the participant response in a dict
+        For all response JSON files, this function reads the JSON and stores the participant response in a dict.
+        In the case where a response is missing, this info is added to missing_response:dict and the results are still calculated without
+        it.
         '''
+        def _make_unique_person_key(file_results):
+            a = list(file_results["metadata"].keys())
+            a.sort()
+            return a[0]
+
         dir_responses = {}
+        missing_response = {}
         for p in self.paths:
             # File level
             with open(p, 'r') as f:
@@ -42,17 +56,26 @@ class ExperimentDatasetAnalyser():
             img_level_dict = {}
             for (meta_id, response_dict) in file_responses.items():
                 # Image level
-                n = meta_id[0]
+                n = meta_id.split("_")[0]
                 img_name = file_results["file"][n]["src"]
-
+                
+                # Deal with missing responses
+                if not response_dict["av"]:
+                    if p.name in missing_response:
+                        missing_response[p.name] += 1
+                    else:
+                        missing_response[p.name] = 1
+                    continue
+                # map numbers to readable responses
                 response = __class__._interpret_response(
                     result=file_results, response=response_dict["av"]["1"])
 
                 img_level_dict[img_name] = response
 
-            dir_responses[file_results["project"]["created"]] = img_level_dict
+            dir_responses[_make_unique_person_key(file_results)] = img_level_dict
+        print("\nMissing Ressponses: ", missing_response)
 
-        print(*dir_responses.items(), sep='\n')
+        #print(*dir_responses.items(), sep='\n')
         self.dir_responses = dir_responses
 
     @staticmethod
@@ -60,16 +83,12 @@ class ExperimentDatasetAnalyser():
         # responses = {"img_n: resp, ..., "}
         score = {
             "score": 0,
-            "Real": 0,
-            "Synthetic": 0
-        }
-        score = {
-            "score": 0,
             "RealReal": 0,
             "SyntheticSynthetic": 0,
             "RealSynthetic": 0,
             "SyntheticReal": 0
         }
+        # participants are given a mark for correct labelling
         for (k, v) in responses.items():
             answer = answers[k]['state']
             mark = int(answer == v)
@@ -81,6 +100,7 @@ class ExperimentDatasetAnalyser():
         return score
 
     def calculate_results(self):
+        print("\nNew run\n")
         self._get_answer_json()
         self._get_responses()
 
@@ -91,7 +111,7 @@ class ExperimentDatasetAnalyser():
             for (k, v) in self.dir_responses.items():
                 person_dict[k] = __class__._calc_score(self.answers, v)
 
-            print("NEW", *person_dict.items(), "ENDpd\n", sep='\n')
+            print("\nParticipant Confusion matrices", *person_dict.items(), sep='\n')
 
         # Results acrosss files from different src folders. Shows whic
 
@@ -112,20 +132,19 @@ class ExperimentDatasetAnalyser():
                     data_src_per_person[person_id][img_src] += int(
                         answer == response)
 
-            print(*data_src.items(), "END\n", sep='\n')
-            print(*data_src_per_person.items(), "END\n", sep='\n')
+            print("\nWhole directory Score stratified by data source: ", *data_src.items(), sep='\n')
+            print("\nPer Person score stratified by data source:", *data_src_per_person.items(), sep='\n')
 
-            total_real = self.images_per_dir/2
-            total_fake = total_real
-            n_fake_per_gen = self.images_per_dir/(len(self.answers["metadata"]["src_dirs"]) + 1 )
+            total_real = (len(self.answers["metadata"]["src_dirs"]) - 1) * self.imgs_per_dir
 
 
+            print("\nWhole directory summary statistics:")
             for (k,v) in data_src.items():
-                if k == "real":
-                    pct = 100*(v/total_real)
+                if ("S" not in k):
+                    pct = 100*(v/(total_real*len(self.paths)))
                 else:
-                    pct = 100*(v/n_fake_per_gen)
-                print("{pct} of {src_dir} images were correctly labelled".format(pct=pct, src_dir=k))
+                    pct = 100*(v/(self.imgs_per_dir*len(self.paths)))
+                print("{pct:.1f}% of {src_dir} images were correctly labelled".format(pct=pct, src_dir=k))
 
         calculate_per_person()
         calculate_per_data_src()

@@ -1,12 +1,13 @@
 import json
 from os import mkdir
-from shutil import move, copy2
+from shutil import copy2
 from pathlib import Path
 from collections import OrderedDict
 from itertools import tee
 from random import seed, sample, shuffle
+from PIL import Image
 
-seed(1)
+
 
 
 class ExperimentDatasetMaker():
@@ -21,7 +22,7 @@ class ExperimentDatasetMaker():
         self.r_image_paths, self.f_image_paths = [], []
 
         self.whole_dataset_dict = None
-
+        
         self.IMAGE_EXT = ["png", "jpg", "jpeg"]
 
     @staticmethod
@@ -88,7 +89,8 @@ class ExperimentDatasetMaker():
         return
 
 
-    def create_single_experiment_set(self, dest_dir: Path, ext="png"):
+    def create_single_experiment_set(self, dest_dir: Path, ext="png", transform=False, Seed=1):
+        seed(Seed)
         self._get_rf_image_paths()
 
         dataset_dir = dest_dir / self.set_name / "dataset"
@@ -105,10 +107,13 @@ class ExperimentDatasetMaker():
         for i, p in enumerate(image_paths):
             new_img_name = f"img_{i+1}.{ext}"
             new_path = dataset_dir / new_img_name
-            state = "Real" if p.parts[-2].lower() == "real" else "Synthetic"
+            state = "Real" if ("processed_TEE" in str(p)) else "Synthetic"
 
             __class__._copy_and_rename(
                 old_path=p, new_path=new_path)
+
+            if transform:
+                Image.open(new_path).resize((256,256)).convert("L").save(new_path)
 
             src_dir = p.parts[-2]
             
